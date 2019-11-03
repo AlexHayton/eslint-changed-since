@@ -25,6 +25,10 @@ async function readEslintIgnore() {
 
 function ignoreFiles(files) {
   const filesToIgnore = Promise.all(readGitIgnore, readEslintIgnore).flat();
+  const filteredFiles = ignore()
+    .add(filesToIgnore)
+    .filter(files);
+  return filteredFiles;
 }
 
 module.exports = {
