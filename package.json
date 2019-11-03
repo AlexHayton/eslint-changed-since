@@ -2,7 +2,8 @@
   "name": "eslint-changed-since",
   "version": "0.0.0-development",
   "description": "Run eslint for files changed since a certain point",
-  "main": "index.js",
+  "main": "src/index.js",
+  "bin": "src/index.js",
   "engines": {
     "node": ">=8.0.0"
   },
@@ -34,7 +35,11 @@
     "url": "https://github.com/alexhayton/eslint-changed-since.git"
   },
   "dependencies": {
-    "nodegit": "^0.26.2"
+    "app-root-path": "^3.0.0",
+    "chalk": "^2.4.2",
+    "ignore": "^5.1.4",
+    "nodegit": "^0.26.2",
+    "yargs": "^14.2.0"
   },
   "peerDependencies": {
     "eslint": "*"
@@ -86,7 +91,7 @@
       "/__tests__/.*/__fixtures__/.*"
     ],
     "collectCoverageFrom": [
-      "index.js",
+      "src/index.js",
       "src/**/*.{js,ts}"
     ],
     "testMatch": [

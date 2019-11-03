@@ -16,16 +16,16 @@
     "plugin:node/recommended"
   ],
   "rules": {
+    "semi": ["error", "always"],
+    "comma-dangle": ["error", "always-multiline"],
     "no-process-exit": "warn",
     "jest/no-disabled-tests": "error",
     "jest/no-focused-tests": "error",
     "jest/no-identical-title": "error",
     "node/no-unsupported-features": "off",
     "node/no-unpublished-require": "off",
-    "security/detect-non-literal-fs-filename": "error",
     "security/detect-unsafe-regex": "error",
     "security/detect-buffer-noassert": "error",
-    "security/detect-child-process": "error",
     "security/detect-disable-mustache-escape": "error",
     "security/detect-eval-with-expression": "error",
     "security/detect-no-csrf-before-method-override": "error",
