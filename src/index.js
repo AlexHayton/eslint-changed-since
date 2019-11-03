@@ -1,14 +1,19 @@
 #!/usr/bin/env node
 const yargs = require('yargs');
-const { listFilesChangedSince } = require('./git');
-const { runESLint } = require('./eslint');
 const chalk = require('chalk');
+const { listFilesChangedSince } = require('./git');
+const { filterIgnoredFiles, filterExistingFiles, filterIncludedFiles } = require('./files');
+const { runESLint } = require('./eslint');
 
-async function run({ refName, eslintOptions = [] }) {
+async function run({ refName, ext, eslintOptions = [] }) {
   const files = await listFilesChangedSince(refName);
-  console.log(chalk.green(`${files.length} files changed since ${refName}`));
-  if (files.length > 0) {
-    runESLint(eslintOptions, files);
+  const extensionsToInclude = ext.split(',');
+  const includedFiles = filterIncludedFiles(extensionsToInclude, files);
+  const existingFiles = filterExistingFiles(includedFiles);
+  const filteredFiles = await filterIgnoredFiles(existingFiles);
+  console.log(chalk.green(`${filteredFiles.length} files changed since ${refName}`));
+  if (filteredFiles.length > 0) {
+    runESLint(eslintOptions, filteredFiles);
   }
 }
 
@@ -28,6 +33,12 @@ yargs
         })
         .positional('eslintOptions', {
           describe: 'options for ESLint',
+        })
+        .options({
+          ext: {
+            describe: 'extensions to include',
+            default: '.js',
+          },
         });
     },
     run,
