@@ -7,7 +7,9 @@ const chalk = require('chalk');
 async function run({ refName, eslintOptions = [] }) {
   const files = await listFilesChangedSince(refName);
   console.log(chalk.green(`${files.length} files changed since ${refName}`));
-  runESLint(eslintOptions, files);
+  if (files.length > 0) {
+    runESLint(eslintOptions, files);
+  }
 }
 
 // eslint-disable-next-line no-unused-expressions
