@@ -2,9 +2,9 @@ const cwd = require('cwd');
 const ignore = require('ignore');
 const fs = require('fs');
 const util = require('util');
+const Promise = require('bluebird');
 const flat = require('array.prototype.flat');
 
-util.promisify(fs.access);
 util.promisify(fs.readFile);
 const appRoot = cwd();
 
@@ -30,13 +30,18 @@ function filterIncludedFiles(extensionsToInclude, files) {
   return files.filter(includeFile);
 }
 
+// Some files are in the git diff but no longer exist. Filter these out.
 async function filterExistingFiles(files) {
-  const fileExists = async filename => {
-    const exists = await fs.access(filename);
-    return exists;
+  const fileExists = filename => {
+    return new Promise(resolve => {
+      fs.access(filename, fs.constants.R_OK, err => {
+        resolve(err ? undefined : filename);
+      });
+    });
   };
 
-  return files.filter(fileExists);
+  const filesAccessed = await Promise.map(files, fileExists);
+  return filesAccessed.filter(file => file);
 }
 
 async function filterIgnoredFiles(files) {
