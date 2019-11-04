@@ -10,7 +10,7 @@
   <a href="https://www.npmjs.org/package/eslint-changed-since"><img src="https://badgen.net/npm/v/eslint-changed-since" alt="npm version"/></a>
   <a href="https://www.npmjs.org/package/eslint-changed-since"><img src="https://badgen.net/npm/license/eslint-changed-since" alt="license"/></a>
   <a href="https://www.npmjs.org/package/eslint-changed-since"><img src="https://badgen.net/npm/dt/eslint-changed-since" alt="downloads"/></a>
-  <a href="https://travis-ci.org/alexhayton/eslint-changed-since"><img src="https://badgen.net/travis/alexhayton/eslint-changed-since" alt="build"/></a>
+  <a href="https://travis-ci.org/alexhayton/eslint-changed-since"><img src="https://github.com/alexhayton/eslint-changed-since/workflows/Node.js Package/badge.svg" alt="build"/></a>
   <a href="https://codecov.io/gh/alexhayton/eslint-changed-since"><img src="https://badgen.net/codecov/c/github/alexhayton/eslint-changed-since" alt="codecov"/></a>
   <a href="https://snyk.io/test/github/alexhayton/eslint-changed-since"><img src="https://snyk.io/test/github/alexhayton/eslint-changed-since/badge.svg" alt="Known Vulnerabilities"/></a>
   <a href="./SECURITY.md"><img src="https://img.shields.io/badge/Security-Responsible%20Disclosure-yellow.svg" alt="Responsible Disclosure Policy" /></a>
